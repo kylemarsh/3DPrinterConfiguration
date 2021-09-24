@@ -5,7 +5,7 @@ M575 P1 B57600 S1                          ; PanelDue Comm Setup
 G21                                        ; Work in millimeters
 G90                                        ; Send absolute coordinates
 
-M584 X0 Y1 Z2 E4:5                         ; Set drive mapping
+M584 X0 Y1 Z2 E3:4                         ; Set drive mapping
 
 M569 P0 S0                                 ; Drive 0 goes forwards (X)
 M569 P1 S0                                 ; Drive 1 goes forwards (Y)
@@ -43,16 +43,15 @@ M106 P0 H-1
 M950 F2 C"fan2"                            ; Heat sink fan
 M106 P2 T50 S0.7 H1
 
-M563 P0 D0 H1                              ; Hot end (T0), drive (E0), heater (H1)
+; Configure tools
+M563 P0 D0 H1 S"Left Ext."                 ; Hot end (T0), drive (E0), heater (H1)
 G10 P0 S0 R0                               ; Hot end operating and standby temperatures
-
-;Dual Extrusion Code
-M563 P1 D1 H1                              ; Hot end (T1), drive (E1), heater (H1)
+M563 P1 D1 H1 S"Right Ext."                ; Hot end (T1), drive (E1), heater (H1)
 G10 P1 S0 R0                               ; Hot end (1) operating and standby temperatures
 
 ;STRAIN GAGE PROBE
 M558 P5 C"z_probe.in" I0 A2 S0.05 R0.4 H20 F2500         ; Strain gauge probe settings
-G31 P100 X0 Y0 Z-0.290                     ; Probe trigger and offset values Glass Plate Only
+G31 P100 X0 Y0 Z-0.183                     ; Probe trigger and offset values Glass Plate Only
 ;G31 P100 X0 Y0 Z-0.5                       ; Probe trigger and offset values for FabLam Flex Spring Steel PEI on Glass
 M557 R140 S30                              ; defualt bed mapping
 M501                                       ; Load saved config values
