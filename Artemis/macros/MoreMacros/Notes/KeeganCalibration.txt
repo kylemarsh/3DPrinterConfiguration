@@ -1,0 +1,27 @@
+1. Set my Z=0 accurately. Start in DWC console with M561 to
+turn off any mesh compensation. Then M208 S1 Z-3. Then step
+the nozzle all the way down to the bed and use a thin as
+possible sheet of paper to set Z=0. You want the nozzle to
+just barely drag the paper. Send G92 Z0 to set Z=0
+
+2. Set my probe trigger height. Move the head up 5 mm (G1 Z5)
+then send G30 S-1. The console will display the trigger Z
+height. Repeat 2-3 times and average the Z value. Put that
+value in for the Z value of G31 in config.g. This will prompt
+a restart, do it.
+
+(at this point you can delete config-override.g and
+heightmap.csv and run the _First_Probe macro instead)
+
+3. Auto Calibration. Send G32 via console. Let the calibration
+finish and repeat 2-4 times until the deviations converge.
+M500 to save.
+
+4. Mesh Bed, optional, and I don’t usually use it. You can send
+a G29 via console to run a detailed z probe that will create
+your height map to be used in mesh compensation. If you don’t
+want to use mesh bed (try it without it first) then make sure
+you disable it by either sending M561 in console, commenting out
+M375 in config.g, or disabling it via the dropdown on the “Auto
+Delta Calibration” button in DWC.
+
