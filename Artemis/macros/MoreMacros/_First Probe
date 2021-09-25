@@ -15,7 +15,5 @@ M190 S70
 M140 S0
 G29
 M500
-G28
 M84
-M375
 M117 End Artemis Probe Autolevel Calibration

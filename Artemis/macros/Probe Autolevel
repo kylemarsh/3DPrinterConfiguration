@@ -6,7 +6,6 @@ M140 S0
 M558 P5 C"z_probe.in" I0 A2 S0.05 R0.4 F2000
 G32
 M500
-G28
-M84
+M98 P"0:/macros/sys/stow_effector.g"
 M375
 M117 Artemis Autolevel Calibration Complete

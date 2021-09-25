@@ -1,6 +1,0 @@
-G28                ; home
-; T0               ; Enable first extruder (set in slicer so we can slice for either filament)
-G1 Z30 Y-190 F5000 ; lower print head and move to the edge of the bed so priming nozzle doesn't dribble filament in the middle
-; Can I set the temperature elsewhere and then put a "wait for temp" here without re-specifying the temp? Or can I pass parameters to the macro?
-G1 E160 F2500      ; bring filament to nozzle, assuming loaded with macro and temperature set by slicer
-M400               ; wait for movement to finish

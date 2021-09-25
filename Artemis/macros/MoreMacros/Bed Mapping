@@ -9,5 +9,5 @@ G29
 M500
 G4 S1
 M106 P2 T50 S0.5 H1
-G28
+M98 P"0:/macros/sys/stow_effector.g" ; raise tool, but don't hit endstops
 M117 NOTE Any Auto-Probe (G32) done after bed mapping will disable previous bed mapping!

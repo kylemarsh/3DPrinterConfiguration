@@ -5,6 +5,6 @@ M203 Z14000
 G92 E0
 G1 E-160 F5000
 G92 E0
-G28
+M98 P"0:/macros/sys/stow_effector.g"
 ;M84
 
