@@ -1,6 +1,11 @@
 M291 P"FIRST PROBE PRINTER SETUP: Did you delete heightmap.csv and config-override.g?  Continue Click OK" R"SETUP PRINTER" S3
 M117 Begin Artemis First Probe Autolevel Calibration
 M117 Heating Bed Please Wait
+
+; FIXME: This heats the bed (not the nozzle) and then turns off the heater
+; before probing, but doesn't wait for it to cool, so all the probed points
+; happen at different temperatures. I feel like that's a recipe for disaster?
+
 M190 S70
 M104 S0
 M140 S0
