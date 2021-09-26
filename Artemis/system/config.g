@@ -31,13 +31,20 @@ M201 X2400 Y2400 Z2400 E5000               ; Accelerations (mm/s^2)
 M203 X12000 Y12000 Z12000 E18000           ; Maximum speeds (mm/min)
 M566 X500 Y500 Z500 E2000                  ; Maximum instant speed changes mm/minute
 
+; Set up temperature sensors
 M308 S0 P"bed_temp" Y"thermistor" A"Bed Temp" T100000 B4388 R4700 H30 L0         ; Bed thermistor
 M308 S1 P"e0_temp" Y"thermistor" A"Tool Temp" T100000 B4388 R4700 C7.06e-8 H30 L0     ; Hot end Thermistor
+
+; Set up heaters
 M950 H0 C"bed_heat" T0                     ; heater 0 uses the bed_heat pin, sensor 0
 M950 H1 C"e0_heat" T1                      ; heater 1 uses the e0_heat pin, sensor 0
-M307 H0 B0                                 ; Heated Bed (H2)
-M140 H0                                    ; the bed heater is heater 0
 
+; Configure heaters (tuned for PLA; 60C bed and 200C hotend)
+M307 H0 B0 R0.197 C885.9 D37.77 S1.00 V13.8     ; Heated bed PID tuning parameters for 60C (in case config-overrides.g gets blown away)
+M307 H1 B0 R4.386 C105.7:71.5 D4.84 S1.00 V13.6 ; Hot end PID tuning paramters for 200C (in case config-overrides.g gets blown away)
+M140 H0                                         ; the bed heater is heater 0
+
+; Set up fans
 M950 F0 C"fan0"                            ; Part Cooling Fan
 M106 P0 H-1
 M950 F2 C"fan2"                            ; Heat sink fan
@@ -52,7 +59,6 @@ G10 P1 S0 R0                               ; Hot end (1) operating and standby t
 ;STRAIN GAGE PROBE
 M98 P"0:/macros/sys/probe_config.g"
 G31 P100 X0 Y0 Z-0.230                       ; Probe trigger and offset values Glass Plate Only
-;G31 P100 X0 Y0 Z-0.183                      ; Probe trigger and offset values Glass Plate Only
 ;G31 P100 X0 Y0 Z-0.5                        ; Probe trigger and offset values for FabLam Flex Spring Steel PEI on Glass
 M557 R140 S30                                ; defualt bed mapping
 M501                                         ; Load saved config values
