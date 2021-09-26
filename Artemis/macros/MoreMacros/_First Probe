@@ -9,11 +9,12 @@ M558 P5 C"z_probe.in" I0 A1 S0.05 R0.4 H20 F1500
 G32
 M500
 M117 Bed Mapping
-M558 P5 C"z_probe.in" I0 A1 S0.05 R0.4 H20 F1500
+M558 P5 C"z_probe.in" I0 A1 S0.05 R0.4 F2500
 M117 Heating Bed Please Wait
 M190 S70
 M140 S0
 G29
 M500
+M98 P"0:/macros/sys/probe_config.g" ; reset probe
 M84
 M117 End Artemis Probe Autolevel Calibration

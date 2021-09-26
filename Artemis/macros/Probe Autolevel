@@ -3,7 +3,7 @@ M117 Heating Bed Please Wait
 M190 S70
 M104 S0
 M140 S0
-M558 P5 C"z_probe.in" I0 A2 S0.05 R0.4 F2000
+M98 P"0:/macros/sys/probe_config.g"
 G32
 M500
 M98 P"0:/macros/sys/stow_effector.g"
