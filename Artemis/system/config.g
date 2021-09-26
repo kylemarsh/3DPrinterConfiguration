@@ -51,7 +51,8 @@ G10 P1 S0 R0                               ; Hot end (1) operating and standby t
 
 ;STRAIN GAGE PROBE
 M558 P5 C"z_probe.in" I0 A2 S0.05 R0.4 H20 F2500         ; Strain gauge probe settings
-G31 P100 X0 Y0 Z-0.183                     ; Probe trigger and offset values Glass Plate Only
+G31 P100 X0 Y0 Z-0.230                     ; Probe trigger and offset values Glass Plate Only
+;G31 P100 X0 Y0 Z-0.183                     ; Probe trigger and offset values Glass Plate Only
 ;G31 P100 X0 Y0 Z-0.5                       ; Probe trigger and offset values for FabLam Flex Spring Steel PEI on Glass
 M557 R140 S30                              ; defualt bed mapping
 M501                                       ; Load saved config values

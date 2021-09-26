@@ -1,18 +1,10 @@
 ; Configure your slicer to call this macro at the beginning of the print with
 ;   M98 P"0:/macros/sys/start_print.g" T[first_layer_temperature] B[first_layer_bed_temperature]
-; This will home the axes if necessary, probe the bed, set the temperatures, ready
+; This will home the axes if necessary, set z=0 by probing, set the temperatures, ready
 ; the effector, and prime the nozzle.
 
-; Home if necessary
-if !move.axes[0].homed || !move.axes[1].homed || !move.axes[2].homed
-    G28
-
-; Probe bed
-; TODO: get temperatures from object model at heat.heaters[].active, and save them
-;     then set heat.heaters[].current as active to hold current temp during probing
-;     then restore active temps
-;     should also handle active/standby state?
-G32
+M98 P"0:/macros/sys/maybe_home.g"
+M98 P"0:/macros/Probe Zero"
 
 ; Prime nozzle
 ; TODO: have slicer figure out the correct tool to start with ahead of time and pass it as param
