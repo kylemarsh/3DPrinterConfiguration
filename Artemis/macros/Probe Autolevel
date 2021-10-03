@@ -1,6 +1,6 @@
 M117 Artemis Autolevel Calibration
 M117 Heating Bed Please Wait
-M190 S70
+M190 S60
 M104 S0
 M140 S0
 M98 P"0:/macros/sys/probe_config.g"
