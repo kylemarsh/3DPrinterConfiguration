@@ -1,0 +1,5 @@
+; set z-height based on single, center bed probe. Useful if you want to use
+; a heightmap determined by probing after homing with the endstops.
+M98 P"0:/macros/sys/maybe_home.g"
+G1 X0 Y0 Z5 F5000
+G30
