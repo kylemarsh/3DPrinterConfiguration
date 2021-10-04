@@ -1,4 +1,0 @@
-; Tap the bed and report the probe trigger distance at the current X,Y location
-G1 Z5
-G30 S-1
-G1 Z5

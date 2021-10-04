@@ -1,71 +1,87 @@
-M550 PArtemis                              ; Printer name
-M555 P2                                    ; Gcode Output Type
-M552 S1                                    ; Enable Wifi 1/ Disable 0
-M575 P1 B57600 S1                          ; PanelDue Comm Setup
-G21                                        ; Work in millimeters
-G90                                        ; Send absolute coordinates
+; SeeMeCNC 3D Printers
+; General preferences 
+G90                                                     ; absolute coordinates
+M83                                                     ; relative extruder moves
 
-M584 X0 Y1 Z2 E3:4                         ; Set drive mapping
+; Only remove ONE semi-colon for ONE printer configuration
+M550 P"ARTEMIS"                                         ; set printer name (ARTEMIS, RostockMAX, BOSSdelta, SeeMeCNC, BestFriend, etc.)
+M665 R150 L340.5 B150 H540                              ; ARTEMIS Carbon Fiber ARMS (R delta radius, L diagonal rod length, B printable radius, H homed height default)
+;M665 R150 L350.7 B145 H530                              ; ARTEMIS Injection Molded ARMS 350MM L
 
-M569 P0 S0                                 ; Drive 0 goes forwards (X)
-M569 P1 S0                                 ; Drive 1 goes forwards (Y)
-M569 P2 S0                                 ; Drive 2 goes forwards (Z)
-M569 P3 S1                                 ; Drive 3 goes forwards (E0)
-M569 P4 S1                                 ; Drive 4 goes forwards (E1)
+M666 X0 Y0 Z0                                           ; endstop adjustment (this is set by autocalibration leveling)
 
-M574 X2 S1 P"xstop"                        ; set end stop configuration (x-tower end stop at high end, active high)
-M574 Y2 S1 P"ystop"                        ; set end stop configuration (y-tower end stop at high end, active high)
-M574 Z2 S1 P"zstop"                        ; set end stop configuration (z-tower end stop at high end, active high)
+; Network
+M552 S1                                                 ; enable network
+M586 P0 S1                                              ; enable HTTP
+M586 P1 S0                                              ; disable FTP
+M586 P2 S0                                              ; disable Telnet
 
-;M665 R150 L351.1 B145 H530 X0 Y0 Z0        ; INJ. MOLDED ARMS delta radius, diagonal rod length, printable radius and homed height
-M665 R150 L339.47 B145 H530 X0 Y0 Z0       ; CARBON FIBER ARMS delta radius, diagonal rod length, printable radius and homed height
-                                           ; Y X Z are tower angle offsets
-M666 X0 Y0 Z0                              ; end stop offsets in mm
+; Drives
+M569 P0 S0                                              ; physical drive 0
+M569 P1 S0                                              ; physical drive 1
+M569 P2 S0                                              ; physical drive 2
+M569 P3 S1                                              ; physical drive 3
+M569 P4 S1                                              ; physical drive 4
+M584 X0 Y1 Z2 E3:4                                      ; set drive mapping
+M350 X16 Y16 Z16 E16:16 I1                              ; configure micro stepping with interpolation
+M92 X200.00 Y200.00 Z200.00 E182.00:182.00              ; set steps per mm
+M566 X700.00 Y700.00 Z700.00 E2000.00:2000.00           ; set maximum instantaneous speed changes (mm/min)
+M203 X10000.00 Y10000.00 Z10000.00 E9000.00:9000.00     ; set maximum speeds (mm/min)
+M201 X1400.00 Y1400.00 Z1400.00 E5000.00:5000.00        ; set accelerations (mm/s^2)
+M906 X1500 Y1500 Z1500 E1600:1600 I40                   ; set motor currents (mA) and motor idle factor in per cent
+M84 S30                                                 ; Set idle timeout
 
-M350 X16 Y16 Z16 E16:16 I1                 ; Set 16x micro-stepping w/ Interpolation
-M92 X200 Y200 Z200                         ; Set axis steps/mm
-M92 E182.0:182.0                           ; Set extruder steps/mm
+; Axis Limits
+M208 Z0 S1                                              ; set minimum Z
 
-M906 X1500 Y1500 Z1500 E1200:1200 I50      ; Set motor currents (mA) and idle current %
-M201 X2400 Y2400 Z2400 E5000               ; Accelerations (mm/s^2)
-M203 X12000 Y12000 Z12000 E18000           ; Maximum speeds (mm/min)
-M566 X500 Y500 Z500 E2000                  ; Maximum instant speed changes mm/minute
+; End-stops
+M574 X2 S1 P"xstop"                                     ; configure active-high endstop for high end on X via pin xstop
+M574 Y2 S1 P"ystop"                                     ; configure active-high endstop for high end on Y via pin ystop
+M574 Z2 S1 P"zstop"                                     ; configure active-high endstop for high end on Z via pin zstop
 
-; Set up temperature sensors
-M308 S0 P"bed_temp" Y"thermistor" A"Bed Temp" T100000 B4388 R4700 H30 L0         ; Bed thermistor
-M308 S1 P"e0_temp" Y"thermistor" A"Tool Temp" T100000 B4388 R4700 C7.06e-8 H30 L0     ; Hot end Thermistor
+; Z-Probe
+M558 P5 I0 A4 R0.4 C"zprobe.in" H10 F2000 T6000         ; F2000 CF ARMS and F2500 Injection Molded ARMS, HOTEND PROBEset Z probe type to switch and the dive height + speeds
+;M558 P5 I1 A4 R0.4 C"!^zprobe.in" H10 F250 T6000        ; FSR PROBE set Z probe type to switch and the dive height + speeds
+G31 P500 X0 Y0 Z-0.25                                   ; Z-0.25 CF ARMS and Z-0.4 for Injection molded arms, set Z probe trigger value, offset and trigger height
+M557 R130 S30                                           ; define mesh grid- not used
 
-; Set up heaters
-M950 H0 C"bed_heat" T0                     ; heater 0 uses the bed_heat pin, sensor 0
-M950 H1 C"e0_heat" T1                      ; heater 1 uses the e0_heat pin, sensor 0
+; Bed Heater
+M308 S0 P"bedtemp" Y"thermistor" T100000 B4725 C7.06e-8 ; configure sensor 0 as thermistor on pin bed temp
+M950 H0 C"bedheat" T0                                   ; create bed heater output on bed heat and map it to sensor 0
+M307 H0 R0.245 C774.3 D25.92 S1.00 V12.9                ; Bed Heater Process Parameters
+M140 H0                                                 ; map heated bed to heater 0
+M143 H0 S120                                            ; set temperature limit for heater 0 to 120C
 
-; Configure heaters (tuned for PLA; 60C bed and 200C hotend)
-M307 H0 B0 R0.197 C885.9 D37.77 S1.00 V13.8     ; Heated bed PID tuning parameters for 60C (in case config-overrides.g gets blown away)
-M307 H1 B0 R4.386 C105.7:71.5 D4.84 S1.00 V13.6 ; Hot end PID tuning paramters for 200C (in case config-overrides.g gets blown away)
-M140 H0                                         ; the bed heater is heater 0
+; Hotend Heater
+M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.06e-8  ; configure sensor 1 as thermistor on pin e0temp
+M950 H1 C"e0heat" T1                                    ; create nozzle heater output on e0heat and map it to sensor 1
+M307 H1 R3.800 C109.1 D5.12 S1.00 V13.0                 ; Hotend Heater Process Parameters
+M143 H1 S280                                            ; Hotend Max Temp
 
-; Set up fans
-M950 F0 C"fan0"                            ; Part Cooling Fan
-M106 P0 H-1
-M950 F2 C"fan2"                            ; Heat sink fan
-M106 P2 T50 S0.7 H1
+; Fans
+M950 F0 C"fan0" Q500                                    ; create fan 0 on pin fan0 and set its frequency
+M106 P0 S0 H-1                                          ; set fan 0 value. Thermostatic control is turned off
+M950 F1 C"fan2" Q500                                    ; create fan 1 on pin fan1 and set its frequency
+M106 P1 S0.80 H1 T45                                    ; set fan 1 value. Thermostatic control is turned on
 
-; Configure tools
-M563 P0 D0 H1 S"Left Ext."                 ; Hot end (T0), drive (E0), heater (H1)
-G10 P0 S0 R0                               ; Hot end operating and standby temperatures
-M563 P1 D1 H1 S"Right Ext."                ; Hot end (T1), drive (E1), heater (H1)
-G10 P1 S0 R0                               ; Hot end (1) operating and standby temperatures
+; Tool Extruder 1
+M563 P0 D0 H1 F0
+G10 P0 X0 Y0 Z0
+G10 P0 S0 R0
 
-;STRAIN GAGE PROBE
-M98 P"0:/macros/sys/probe_config.g"
-G31 P100 X0 Y0 Z-0.268                       ; Probe trigger and offset values Glass Plate Only
-;G31 P100 X0 Y0 Z-0.191                       ; Probe trigger and offset values Glass Plate Only
-;G31 P100 X0 Y0 Z-0.5                        ; Probe trigger and offset values for FabLam Flex Spring Steel PEI on Glass
-M557 R140 S30                                ; defualt bed mapping
-M501                                         ; Load saved config values
-T0                                           ; Select Tool 0
-;M375					    ; Load height map (for mesh compensation)
+; Tool Extruder 2
+M563 P1 D1 H1 F0
+G10 P1 X0 Y0 Z0
+G10 P1 S0 R0
 
+;Filament Runout Sensor
+M950 J0 C"!^e0Stop"                                     ; create switch pin
+M950 J1 C"!^e1stop"                                     ; create switch pin
+M581 P0:1 T2 S1 R1                                      ; run trigger2.g to pause if filament has run out during SD card printing
 
-
-
+; Miscellaneous
+M575 P1 S1 B57600                                       ; enable support for PanelDue
+M501                                                    ; load saved parameters from non-volatile memory
+T0                                                      ; select Tool 0
+M911 S10.5 R11.2 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"  ; set voltage thresholds and actions to run on power loss
+M579 X1.0030 Y1.0030 Z1.0030                            ; scale all three SAME amount - for injection molded arms try 1.0100

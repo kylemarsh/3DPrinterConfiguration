@@ -1,10 +1,2 @@
-M104 S0
-M140 S0
-M106 S0
-M203 Z14000
-G92 E0
-G1 E-160 F5000
-G92 E0
-M98 P"0:/macros/sys/stow_effector.g"
-;M84
-
+; stop.g
+; called by M0 stop such as cancelled print running from an SD card
