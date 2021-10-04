@@ -1,7 +1,6 @@
-M291 P"EZR TWO Load filament just past the EZR, then click OK" R"Load Filament" S3
+M291 P"Load filament just past the right-side EZR, then click OK" R"Load Filament" S3
 G28
 T1
-M104 S220
 M109 S220
 M83
 G1 E710 F5000
@@ -13,4 +12,4 @@ G92 E0
 M400
 T0
 M104 S0
-M84
+;M84
