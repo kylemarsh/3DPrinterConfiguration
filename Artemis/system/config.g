@@ -1,5 +1,5 @@
 ; SeeMeCNC 3D Printers
-; General preferences 
+; General preferences
 G90                                                     ; absolute coordinates
 M83                                                     ; relative extruder moves
 
@@ -42,7 +42,7 @@ M574 Z2 S1 P"zstop"                                     ; configure active-high 
 ; Z-Probe
 M558 P5 I0 A4 R0.4 C"zprobe.in" H10 F2000 T6000         ; F2000 CF ARMS and F2500 Injection Molded ARMS, HOTEND PROBEset Z probe type to switch and the dive height + speeds
 ;M558 P5 I1 A4 R0.4 C"!^zprobe.in" H10 F250 T6000        ; FSR PROBE set Z probe type to switch and the dive height + speeds
-G31 P500 X0 Y0 Z-0.25                                   ; Z-0.25 CF ARMS and Z-0.4 for Injection molded arms, set Z probe trigger value, offset and trigger height
+G31 P500 X0 Y0 Z-0.465                                  ; Z-0.25 CF ARMS and Z-0.4 for Injection molded arms, set Z probe trigger value, offset and trigger height
 M557 R130 S30                                           ; define mesh grid- not used
 
 ; Bed Heater
