@@ -1,5 +1,8 @@
+; WARNING -- use ready_effector.g, prime_nozzle.g, and wipe_nozzle.g in your
+; printer's start gcode instead of this macro until RRF3.3 when we get params
+
 ; Configure your slicer to call this macro at the beginning of the print with
-;   M98 P"0:/macros/sys/start_print.g" T[first_layer_temperature] B[first_layer_bed_temperature]
+;   M98 P"0:/macros/sys/start_print.g T[first_layer_temperature] B[first_layer_bed_temperature]"
 ; This will home the axes if necessary, set z=0 by probing, set the temperatures, ready
 ; the effector, and prime the nozzle.
 
