@@ -1,0 +1,3 @@
+; Sets left-hand extruder pressure advance for Atomic PLA - Silky Lilac
+M572 D0 S0.4
+M291 T5 P"Left-hand extruder Pressure Advance set to 0.4"
