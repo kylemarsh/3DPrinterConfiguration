@@ -85,3 +85,6 @@ M501                                                    ; load saved parameters 
 T0                                                      ; select Tool 0
 M911 S10.5 R11.2 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"  ; set voltage thresholds and actions to run on power loss
 M579 X1.0030 Y1.0030 Z1.0030                            ; scale all three SAME amount - for injection molded arms try 1.0100
+
+; Retraction
+M207 S7 F4200                                           ; Set firmware retraction to 7mm at 70mm/s
