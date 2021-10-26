@@ -1,0 +1,7 @@
+; Sets left-hand extruder firmware retraction for Atomic PETG - Dark Cherry Red
+; 25 Oct. 2021
+; - tuned retraction length to 0.8mm
+; - have not tuned retraction speed, deretract length/speed, or z-hop
+M207 S0.8 F4200
+M291 T5 P"Left-hand extruder retraction set to 0.8mm @ 70mm/s (Dark Cherry Red PETG)"
+
