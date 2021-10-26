@@ -1,6 +1,6 @@
-G90                          ; set to relative positioning
+G91                          ; set to relative positioning
 G1 Z10 F10000                ; raise nozzle away from print as fast as possible
-G91                          ; return to abolute positioning
+G90                          ; return to abolute positioning
 
 M104 S0                      ; hotend off
 M140 S0                      ; bed off
