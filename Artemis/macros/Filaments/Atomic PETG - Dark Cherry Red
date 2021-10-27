@@ -1,0 +1,16 @@
+; Settings for Atomic PETG - Dark Cherry Red
+; Values tuned in Left-hand extruder
+
+; Pressure Advance
+; 23 Oct. 2021
+M572 D0 S0.85
+
+; Retraction
+; 25 Oct. 2021
+; - tuned retraction length to 2mm
+; - have not tuned retraction speed, deretract length/speed, or z-hop
+; - retraction tuned with Pressure Advance set to 0.85
+M207 S2 F4200
+
+; Alert
+M291 T5 P"Configured Left-hand extruder for Atomic Dark Chery Red PETG"

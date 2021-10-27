@@ -1,0 +1,11 @@
+; Settings for Atomic PLA - Silky Lilac
+; Values tuned in Left-hand extruder
+
+; Pressure Advance
+; 23 Oct. 2021
+M572 D0 S0.4
+
+; Retraction
+
+; Alert
+M291 T5 P"Configured Left-hand extruder for Atomic Silky Lilac PLA"

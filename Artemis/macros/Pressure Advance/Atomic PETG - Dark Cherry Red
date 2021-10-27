@@ -1,3 +1,0 @@
-; Sets left-hand extruder pressure advance for Atomic PETG - Dark Cherry Red
-M572 D0 S0.85
-M291 T5 P"Left-hand extruder Pressure Advance set to 0.85 (Dark Cherry Red PETG)"
