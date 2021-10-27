@@ -1,0 +1,16 @@
+Hotend Flux Notes
+SeeMeCNC Artemis 300
+
+Maximum extrusion rate (mm/min) determined by repeated tests extruding 60mm
+of filament at different feedrates until we find the fastest that the test
+can complete without skipping: `G1 E60 FXXX`
+
+----------
+Filament: Atomic PETG - Dark Cherry Red
+Hotend: SE300 (stock)
+Nozzle: 0.4mm brass
+Filament Diameter: 1.75mm
+Max Extrusion Speed: 425mm/min
+Maximum Flux: 17.03 cubic mm / sec
+
+----------
