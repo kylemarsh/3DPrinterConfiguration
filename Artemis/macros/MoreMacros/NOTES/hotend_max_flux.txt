@@ -6,10 +6,20 @@ of filament at different feedrates until we find the fastest that the test
 can complete without skipping: `G1 E60 FXXX`
 
 ----------
+Filament: Atomic PLA - Silky Lilac
+Hotend: SE300 (stock)
+Nozzle: 0.5mm brass
+Filament Diameter: 1.75mm
+Temperature: 205
+Max Extrusion Speed: 400mm/min
+Maximum Flux: 16.03 cubic mm / sec
+
+----------
 Filament: Atomic PETG - Dark Cherry Red
 Hotend: SE300 (stock)
-Nozzle: 0.4mm brass
+Nozzle: 0.5mm brass
 Filament Diameter: 1.75mm
+Temperature: 220 (I think)
 Max Extrusion Speed: 425mm/min
 Maximum Flux: 17.03 cubic mm / sec
 
