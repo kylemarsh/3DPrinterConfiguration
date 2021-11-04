@@ -1,0 +1,47 @@
+; USAGE:
+; Calibrate e-steps using free-air extrusion first. Set with M92.
+; Go get the spreadsheet from this thread
+;   https://forum.duet3d.com/topic/6015/guide-for-finding-the-values-for-m592-non-linear-extrusion/2
+; Load filament and heat the hotend to the appropriate temperature for the filament
+; Run this macro and record the actual extruded distance at each speed
+; Enter distances into spreadsheet
+; Use the values for "b" and "a" for the "B" and "A" parameters for M592
+; Save that M592 command in your filament macro (along with pressure advance, retraction, etc)
+; Run this macro again to see if things have improved?
+
+M291 P"Are the filament loaded and hotend heated?" R"Extrusion Test" S3
+
+M98 P"0:/macros/sys/maybe_home.g"
+M116  ; Wait for temperature
+
+G1 X50 Y0 Z130 F3000
+M83 ;Set extruder to relative mode
+M98 P"0:/macros/sys/prime_nozzle.g"
+
+M291 S3 R"Extrusion test" P"Mark filament >50mm from extruder. Press OK to extrude at 1mm/sec"
+
+G1 X50 E50 F60
+M400
+M291 S3 R"Measure extrusion" P"Measure filament taken at 1mm/sec extrusion, then mark filament > 50mm from extruder, then press OK to extrude at 2mm/sec"
+
+G1 X0 E50 F120
+M400
+M291 S3 R"Measure extrusion" P"Measure filament taken at 2mm/sec extrusion, then mark filament > 50mm from extruder, then press OK to extrude at 3mm/sec"
+
+G1 X50 E50 F180
+M400
+M291 S3 R"Measure extrusion" P"Measure filament taken at 3mm/sec extrusion, then mark filament > 50mm from extruder, then press OK to extrude at 4mm/sec"
+
+G1 X0 E50 F240
+M400
+M291 S3 R"Measure extrusion" P"Measure filament taken at 4mm/sec extrusion, then mark filament > 50mm from extruder, then press OK to extrude at 5mm/sec"
+
+G1 X50 E50 F300
+M400
+M291 S3 R"Measure extrusion" P"Measure filament taken at 5mm/sec extrusion, then mark filament > 50mm from extruder, then press OK to extrude at 6mm/sec"
+
+G1 X0 E50 F360
+M400
+M291 S3 R"Measure extrusion" P"Measure filament taken at 6mm/sec extrusion, then press OK"
+
+M0
