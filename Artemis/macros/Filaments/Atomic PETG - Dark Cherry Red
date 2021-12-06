@@ -2,8 +2,8 @@
 ; Values tuned in Left-hand extruder
 
 ; Pressure Advance
-; 23 Oct. 2021
-M572 D0 S0.85
+; 19 Nov. 2021
+M572 D0 S0.65
 
 ; Retraction
 ; 25 Oct. 2021
