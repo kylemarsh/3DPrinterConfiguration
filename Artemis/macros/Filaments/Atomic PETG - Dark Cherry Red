@@ -2,15 +2,15 @@
 ; Values tuned in Left-hand extruder
 
 ; Pressure Advance
-; 19 Nov. 2021
-M572 D0 S0.65
+; 5 Dec. 2021 -- Tuned during retraction calibration
+M572 D0 S0.4
 
 ; Retraction
-; 25 Oct. 2021
-; - tuned retraction length to 2mm
+; 5 Dec. 2021
+; - tuned retraction length to 3mm
 ; - have not tuned retraction speed, deretract length/speed, or z-hop
-; - retraction tuned with Pressure Advance set to 0.85
-M207 S2 F4200
+; - retraction tuned with Pressure Advance set to 0.4
+M207 S3 F4200
 
 ; Alert
 M291 T5 P"Configured Left-hand extruder for Atomic Dark Chery Red PETG"
