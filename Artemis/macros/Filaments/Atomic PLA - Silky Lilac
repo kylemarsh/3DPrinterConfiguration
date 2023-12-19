@@ -21,6 +21,8 @@ M592 D0 A0.2244 B0.0213
 M572 D0 S0.4
 
 ; Retraction
+M207 S3.5 F2400
+
 
 ; Alert
 M291 T5 P"Configured Left-hand extruder for Atomic Silky Lilac PLA"
